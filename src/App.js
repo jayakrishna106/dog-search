@@ -77,7 +77,7 @@ else if(result.length===0){
           <br />
           LifeSpan : {data.life_span}
           <br />
-          Origin : {data.origin}
+          {data.origin ? "Origin :" + data.origin : data.origin }
           </CardText>
       </CardBody>
     </Card>
