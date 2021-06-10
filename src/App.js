@@ -15,13 +15,14 @@ function App() {
         getDogBreadDetails(query).then(r =>  setResult(r));
         if(result){
         obj =result;
-        console.log(obj);
         obj = obj.sort(function(a,b){ return a.name - b.name});
         obj = obj.sort(function(a,b){ return a.height.metric - b.height.metric});
         obj = obj.sort(function(a,b){ return a.life_span - b.life_span});
-          console.log(obj);
+          setResult(obj);
         }
-      setResult(obj);
+        else 
+          setResult('');
+          
       }
       else{
         setResult('');
@@ -29,6 +30,19 @@ function App() {
     }, 100);
  }  
   
+const getAlert=() => {
+if(!result){
+return (<Alert color="primary">
+        Please enter a valid dog bread name
+       </Alert>)
+}
+else if(result.length===0){
+  return(<Alert color="primary">
+  No Data Found
+ </Alert>)
+}
+}
+
   return (
     <div>
       <Navbar color="dark" dark expand="md">
@@ -42,9 +56,7 @@ function App() {
 
         <br />
 
-        {!result && <Alert color="primary">
-        Please enter a valid dog bread name
-       </Alert>}
+        {getAlert()}
         <Row>
       {result && result.map(data =>
       
